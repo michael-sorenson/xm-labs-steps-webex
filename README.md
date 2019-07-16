@@ -1,7 +1,7 @@
 # WebEx Outbound (from xMatters) integration
 This is part of the xMatters Labs awesome listing. For others, see [here](https://github.com/xmatters/xMatters-Labs).
 
-With this library, notification recipients can quickly create a meeting in Zoom and use the outputted Join URL to invite others to the meeting.
+With this library, notification recipients can quickly create a meeting in WebEx and use the outputted meeting link to invite others to the meeting.
 
 This document details how to install and use this integration. 
 
@@ -25,24 +25,15 @@ WebEx is a meeting solution known for its on-demand collaboration, online meetin
 
 # Installation
 ## Prerequisites:
-An existing Communication Plan in xMatters for which you would like to add a Zoom `Create a Meeting` response option
+An existing Communication Plan in xMatters for which you would like to add a WebEx `Create a Meeting` response option
 
 ## Creating a WebEx Bot
 In order to create a WebEx meeting, you need to have a WebEx bot with an access token in order to authenticate to WebEx
 
 1. Navigate to the [Create New Bot](https://developer.webex.com/my-apps/new/bot) page and log in with your WebEx account
 2. Give your bot a name and username, select an icon (or upload one if you so desire), and write a brief description
-3. Give your app a name
-4. Turn off the **Intend to publish this app on Zoom Marketplace** slider
-5. Check the option for **Account-level app**, and choose **JWT API Credentials** as the credential option
-![app-options](./media/app-options.png)
-6. Click **Create**
-7. Fill out the basic information for the app, then click **Continue**
-![basic-info](./media/basic-info.png)
-8. On the **App Credentials** page, open the **View JWT Token** dropdown, then select the **Other** option for `Expiration Time`, and fill in the date to be something a long time from now (for example: noon on January 1, 3000, i.e. `12:00 01/01/3000`)
-* Note: This is not very secure, it is more advisable to use the **1 week** option, and then update the JWT Token value inside your flow in xMatters every week, but this can become cumbersome
-9. Copy the **JWT Token** value and keep it on a notepad to add to xMatters later
-![zoom-token](./media/zoom-token.png)
+3. Save your bot's access token somewhere you will be able to access it later (you won't be able to see it again)
+![access-token](./media/access-token.png)
 
 ## Adding WebEx to xMatters
 1. Inside your xMatters instance, navigate to the Developer tab
@@ -125,4 +116,4 @@ If the integration is not working properly, there are a few places where it coul
 ## xMatters side
 1. Once you've made sure that your Bot Access Token matches that in WebEx, check that you defined all the inputs and outputs correctly
 2. If you have defined everything correctly, make sure you are using the outputs in the way you want to (for example—inside a Slack message)
-3. If all of these are correctly defined, check the log for the Flow (by clicking on **Activity** inside the Flow Designer and selecting the Zoom step) for more guidance
+3. If all of these are correctly defined, check the log for the Flow (by clicking on **Activity** inside the Flow Designer and selecting the WebEx step) for more guidance
