@@ -35,23 +35,10 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 3. Save your bot's access token somewhere you will be able to access it later (you won't be able to see it again)
 ![access-token](./media/access-token.png)
 
-## Adding WebEx to xMatters
-1. Inside your xMatters instance, navigate to the Developer tab
-2. Locate the Communication Plan you would like to add WebEx options to, then click **Edit** > **Flows**
-![edit-flow](./media/edit-flow.png)
-3. For the Form you would like to add WebEx options to, click on **Create Flow**
-![create-a-flow](./media/create-flow.png)
-4. Click and drag **Responses** into the flow, then click **Save**
-![drag-responses](./media/drag-responses.png)
-5. Create a new Response by clicking **Add Response**
-![add-response](./media/add-response-flow.png)
-6. Click Create Response to add a new response
-![create-response](./media/create-response.png)
-7. Fill in a new Response that describe a step to create a WebEx meeting, then click **Save**
-![fill-response](./media/fill-response.png)
-8. On the righthand side, click on the **Custom** tab, then click **+ Create a custom action**
-![create-action](./media/create-action.png)
-9. In the settings tab, fill out the info as follows, then click **Save**:
+## Create Room Step
+
+1. Inside your flow, navigate to the **Custom** tab, then click **+ Create a custom action**
+2. In the settings tab, fill out the info as follows, then click **Save**:
 
 | Option | Value |
 | --- | --- |
@@ -62,7 +49,7 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 | Endpoint Type | No Authentication |
 | Endpoint Label | WebEx |
 
-10. In the inputs tab, add these six inputs, then click **Save**:
+3. In the inputs tab, add these six inputs, then click **Save**:
 
 | Name | Required Field | Minimum Length | Maximum Length | Help Text | Default Value | Multiline |
 | ------- | ---------------- | -------------------- | -------------------- | ----------- | --------------- | --------- |
@@ -73,12 +60,12 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 | isLocked |  | 0 | 10 | Whether or not to lock the room, either `true` or `false` | You can choose to put a default value here or leave it blank |  |
 | teamId |  | 0 | 2000 | If isLocked is true, set the teamId to be the team you would like to lock the room to | You can choose to put a default team here or leave it blank |  | 
 
-11. In the outputs tab, add five outputs: `roomId`, `meetingLink`, `meetingNumber`, `tollFreeNumber`, `tollNumber`; then click **Save**
-12. In the script tab, paste in [the script](./script.js) script, then click **Save**
-13. Now you've made your custom action, which you can reuse as much as you want, changing the `title` input to change who the room description, and using it for as many `teamId`s as you would like (Note the `Bot Access Token` generally will not change)
+4. In the outputs tab, add five outputs: `roomId`, `meetingLink`, `meetingNumber`, `tollFreeNumber`, `tollNumber`; then click **Save**
+5. In the script tab, paste in [the script](./script.js) script, then click **Save**
+6. Now you've made your custom action, which you can reuse as much as you want, changing the `title` input to change who the room description, and using it for as many `teamId`s as you would like (Note the `Bot Access Token` generally will not change)
 
 
-## Adding the step to a flow
+## Usage
 1. In your flow, click and drag the custom **Create WebEx Meeting** action into the flow
 ![drag-action](./media/drag-action.png)
 2. Connect your WebEx **Create Meeting** response option (or any other step that you would like to fire a WebEx meeting from!) to your custom **Create WebEx meeting** action in the flow
