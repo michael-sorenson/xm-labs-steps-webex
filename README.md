@@ -1,5 +1,5 @@
 # WebEx Outbound (from xMatters) integration
-This is part of the xMatters Labs awesome listing. For others, see [here](https://github.com/xmatters/xMatters-Labs).
+This is part of the xMatters Labs Steps awesome listing. For others, see [here](https://github.com/xmatters/xMatters-Labs-Flow-Steps).
 
 With this library, notification recipients can quickly create a meeting in WebEx and use the outputted meeting link to invite others to the meeting.
 
@@ -24,10 +24,8 @@ This document details how to install and use this integration.
 WebEx is a meeting solution known for its on-demand collaboration, online meeting, web conferencing and videoconferencing applications. This integration with xMatters makes it easy to create and invite people to join a WebEx meeting from an xMatters notification, allowing anyone you give the link to join the meeting with just a click.
 
 # Installation
-## Prerequisites:
-An existing Communication Plan in xMatters for which you would like to add a WebEx `Create a Meeting` response option
 
-## Creating a WebEx Bot
+## WebEx Setup
 In order to create a WebEx meeting, you need to have a WebEx bot with an access token in order to authenticate to WebEx
 
 1. Navigate to the [Create New Bot](https://developer.webex.com/my-apps/new/bot) page and log in with your WebEx account
@@ -37,8 +35,7 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 
 ## Create Room Step
 
-1. Inside your flow, navigate to the **Custom** tab, then click **+ Create a custom action**
-2. In the settings tab, fill out the info as follows, then click **Save**:
+### Settings
 
 | Option | Value |
 | --- | --- |
@@ -49,7 +46,7 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 | Endpoint Type | No Authentication |
 | Endpoint Label | WebEx |
 
-3. In the inputs tab, add these six inputs, then click **Save**:
+### Inputs
 
 | Name | Required Field | Minimum Length | Maximum Length | Help Text | Default Value | Multiline |
 | ------- | ---------------- | -------------------- | -------------------- | ----------- | --------------- | --------- |
@@ -60,10 +57,18 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 | isLocked |  | 0 | 10 | Whether or not to lock the room, either `true` or `false` | You can choose to put a default value here or leave it blank |  |
 | teamId |  | 0 | 2000 | If isLocked is true, set the teamId to be the team you would like to lock the room to | You can choose to put a default team here or leave it blank |  | 
 
-4. In the outputs tab, add five outputs: `roomId`, `meetingLink`, `meetingNumber`, `tollFreeNumber`, `tollNumber`; then click **Save**
-5. In the script tab, paste in [the script](./script.js) script, then click **Save**
-6. Now you've made your custom action, which you can reuse as much as you want, changing the `title` input to change who the room description, and using it for as many `teamId`s as you would like (Note the `Bot Access Token` generally will not change)
+### Outputs
 
+| Name |
+| --- |
+| roomId |
+| meetingLink |
+| meetingNumber |
+| tollFreeNumber |
+| tollNumber | 
+
+### Script
+In the script tab, paste in this [script](./script.js)
 
 ## Usage
 1. In your flow, click and drag the custom **Create WebEx Meeting** action into the flow
@@ -86,15 +91,14 @@ In order to create a WebEx meeting, you need to have a WebEx bot with an access 
 | WebEx | https://api.ciscospark.com | | None |
 
 7. Close out of the endpoint editor, then click OK to save the custom step, then click **Save** to save the flow
-8. **TODO** Add another step that sends an email/message (e.g. slack message) back to the user with the Join URL and Start URL 
 
 # Testing
-To test the integration, fire the xMatters outbound notifier and select the **Create WebEx Meeting** response option. If it works, the `meetingLink` will be populated with the WebEx meeting link.
+To test the step, fire the xMatters outbound notifier and select the **Create WebEx Meeting** response option. If it works, the `meetingLink` will be populated with the WebEx meeting link.
 * To see the meetingLink, edit the script for the custom step inside the Flow Designer, adding a line at the end with `console.log(output['meetingLink'])`
-* Now, when the **Create WebEx Meeting** response fires, you should be able to see the meetingLink in the activity stream (access this by clicking on **Activity** inside the Flow Designer)
+* Now, when the **Create WebEx Meeting** response fires, you should be able to see the meetingLink in the activity stream (access this by clicking on **Activity** inside the Flow Designer, then clicking on the WebEx step)
 
 # Troubleshooting
-If the integration is not working properly, there are a few places where it could be going wrong.
+If the step is not working properly, there are a few places where it could be going wrong.
 ## WebEx side
 1. First, check to make sure you have the correct credentials. You should have saved your WebEx Bot's access token somewhere. If not, create a new one:
 2. To do this, navigate to your WebEx bot page (find it from [here](https://developer.webex.com/my-apps/), log in with your account, then click on your bot
